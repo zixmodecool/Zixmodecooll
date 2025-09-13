@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp Palsu - by zix</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ece5dd;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    header {
+      background-color: #075e54;
+      color: white;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+    }
+    header img {
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+    header .name {
+      font-weight: bold;
+    }
+    main {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      background-image: url('https://i.ibb.co/0jhp6sp/whatsapp-bg.png');
+      background-size: cover;
+    }
+    .message {
+      max-width: 70%;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 8px;
+      clear: both;
+      word-wrap: break-word;
+    }
+    .sent {
+      background-color: #dcf8c6;
+      float: right;
+    }
+    .received {
+      background-color: white;
+      float: left;
+    }
+    footer {
+      display: flex;
+      padding: 10px;
+      background-color: #f0f0f0;
+    }
+    footer input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+    footer button {
+      background-color: #075e54;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin-left: 5px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://i.ibb.co/8cvh4tf/profile.png" alt="profile">
+    <div>
+      <div class="name">Gebetan ❤️</div>
+      <div style="font-size: 12px;">online</div>
+    </div>
+  </header>
+  <main id="chat"></main>
+  <footer>
+    <input type="text" id="userInput" placeholder="Ketik pesan...">
+    <button onclick="sendMessage()">➤</button>
+  </footer>
+
+  <script>
+    const responses = [
+      "Aku juga kangen sama kamu 😍",
+      "Kamu udah makan belum? 🍚",
+      "Hehe kamu bikin aku senyum terus 😊",
+      "Coba liat kaca deh, ada orang paling manis disitu 😏",
+      "Iloveu 3000 💕"
+    ];
+
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const text = input.value.trim();
+      if (text === "") return;
+      
+      appendMessage(text, "sent");
+      input.value = "";
+      
+      setTimeout(() => {
+        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+        appendMessage(randomResponse, "received");
+      }, 1000);
+    }
+
+    function appendMessage(text, type) {
+      const chat = document.getElementById("chat");
+      const msg = document.createElement("div");
+      msg.classList.add("message", type);
+      msg.innerText = text;
+      chat.appendChild(msg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
+</body>
+</html>
